@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio de las Historias Perdidas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+            margin-top: 30px;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            width: 80%;
+            max-width: 600px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .resultado {
+            margin: 20px 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-size: 16px;
+            resize: none;
+        }
+        #historiasGuardadas {
+            text-align: left;
+            max-height: 200px;
+            overflow-y: auto;
+            margin-top: 20px;
+            padding: 10px;
+            border-top: 2px solid #ccc;
+        }
+        .historiaItem {
+            background-color: #e6f7ff;
+            border: 1px solid #b3d9ff;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+        h1 {
+            font-size: 24px;
+        }
+        h2 {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>El Desafio de las Historias Perdidas</h1>
+    <h2>Electiva IV - Creatividad e Innovacion educativa</h2>
+    <div class="container">
+        <button onclick="seleccionarTarjeta()">Generar Desafio</button>
+        <button onclick="guardarHistoria()">Guardar Historia</button>
+        <button onclick="resetearJuego()">Reiniciar</button>
+        <div class="resultado" id="resultado"></div>
+        <textarea id="historia" placeholder="Escribe tu historia aqui..."></textarea>
+        <div id="historiasGuardadas"></div>
+    </div>
+
+    <script>
+        const lugares = ['Bosque encantado', 'Ciudad futurista', 'Castillo medieval', 'Isla desierta', 'Nave espacial', 'Montana magica', 'Piramide antigua', 'Mundo submarino', 'Desierto misterioso', 'Parque de diversiones abandonado'];
+        const personajes = ['Explorador', 'Mago', 'Robot', 'Pirata', 'Detective', 'Cientifico loco', 'Heroe de videojuegos', 'Alienigena', 'Bruja buena', 'Caballero valiente'];
+        const objetos = ['Llave magica', 'Mapa antiguo', 'Brujula rota', 'Espada legendaria', 'Pocion secreta', 'Libro encantado', 'Cristal misterioso', 'Amuleto dorado', 'Reloj del tiempo', 'Varita magica'];
+        const problemas = ['Encontrar un tesoro perdido', 'Resolver un acertijo magico', 'Escapar de un laberinto', 'Salvar a un amigo atrapado', 'Detener una maldicion', 'Descubrir un secreto oculto', 'Evitar una catastrofe', 'Recuperar un objeto robado', 'Salvar el mundo', 'Encontrar el camino de regreso a casa'];
+
+        function seleccionarTarjeta() {
+            const lugar = lugares[Math.floor(Math.random() * lugares.length)];
+            const personaje = personajes[Math.floor(Math.random() * personajes.length)];
+            const objeto = objetos[Math.floor(Math.random() * objetos.length)];
+            const problema = problemas[Math.floor(Math.random() * problemas.length)];
+
+            const resultado = `Lugar: ${lugar} <br> Personaje: ${personaje} <br> Objeto: ${objeto} <br> Problema: ${problema}`;
+            document.getElementById('resultado').innerHTML = resultado;
+        }
+
+        function guardarHistoria() {
+            const historia = document.getElementById('historia').value.trim();
+            if (historia) {
+                const historiaItem = document.createElement('div');
+                historiaItem.classList.add('historiaItem');
+                historiaItem.textContent = historia;
+                document.getElementById('historiasGuardadas').appendChild(historiaItem);
+                document.getElementById('historia').value = '';
+            } else {
+                alert('Por favor escribe una historia antes de guardar.');
+            }
+        }
+
+        function resetearJuego() {
+            document.getElementById('resultado').innerHTML = "";
+            document.getElementById('historia').value = "";
+            document.getElementById('historiasGuardadas').innerHTML = "";
+        }
+    </script>
+</body>
+</html>
